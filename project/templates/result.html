@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .result-box { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .prediction { font-size: 1.5em; color: {% if 'Present' in prediction %} #c00 {% else %} #090 {% endif %}; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        td, th { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h2>Prediction Result</h2>
+        <p class="prediction">{{ prediction }} ({{ probability }} probability)</p>
+        <h3>Processed Input:</h3>
+        <table>
+            {% for key, value in processed_data.items() %}
+            <tr>
+                <th>{{ key }}</th>
+                <td>{{ value if value is not none else 'Missing' }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p><a href="/">New Prediction</a></p>
+    </div>
+</body>
+</html>
